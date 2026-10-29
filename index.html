@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0f172a">
+  <title>REIZO</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>REIZO</h1>
+      <span id="status" class="status">準備中</span>
+    </header>
+
+    <main class="app-main">
+      <!-- スキャン画面 -->
+      <section id="view-scan" class="view is-active">
+        <div class="camera">
+          <video id="video" playsinline muted autoplay></video>
+          <div class="guide"></div>
+          <div id="camera-message" class="camera-message" hidden>
+            <p id="camera-message-text"></p>
+            <button id="retry-button" type="button">カメラを起動</button>
+          </div>
+        </div>
+
+        <div id="result" class="result">
+          <p class="result-label">読み取ったJANコード</p>
+          <p id="result-code" class="result-code">---</p>
+          <p id="result-hint" class="result-hint">バーコードを枠に合わせてください</p>
+        </div>
+
+        <div class="history">
+          <h2>読み取り履歴</h2>
+          <p id="history-empty" class="history-empty">まだ読み取っていません</p>
+          <ul id="history-list" class="history-list"></ul>
+        </div>
+      </section>
+
+      <!-- 将来ここに商品一覧・カテゴリー画面を追加します
+      <section id="view-list" class="view"> ... </section>
+      -->
+    </main>
+
+    <nav class="tabbar">
+      <button type="button" class="tab is-active" data-view="view-scan">スキャン</button>
+      <button type="button" class="tab" data-view="view-list" disabled>一覧(準備中)</button>
+    </nav>
+  </div>
+
+  <!-- ZXing(無料ライブラリ)。モジュールより先に読み込まれます -->
+  <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
